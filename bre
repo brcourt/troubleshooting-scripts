@@ -1,5 +1,15 @@
 #! /bin/bash
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                                                                             #
+# BRE is a script that Builds, Runs, and Execs to a container automatically.  #
+# This script must be run in a directory containing a Dockerfile. It will     #
+# build an image, then run a container based on that image, and then exec     #
+# to that container automatically. It always maps 80:80 on the host. If a     #
+# container is running that maps port 80, that container will be killed.      #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
 set -e
 
 # check if the new container will collide with a currently running container, so it will kill that container
