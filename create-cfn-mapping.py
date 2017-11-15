@@ -1,5 +1,17 @@
 #!/usr/bin/env python
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                                                                             #
+# This script takes an AMI ID as an argument. This AMI needs to be in the     #
+# default configured region. On execution, this script will find matching     #
+# AMIs in other regions (same name and same owner) and create a Mapping       #
+# section for a CFN template. This is meeant to be used with Quickstart AMIs  # 
+# and will allow you to quickly create a simple EC2 AMI mapping for every     #
+# region in a CloudFormation template.                                        #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+
 import boto3
 import json
 import sys
