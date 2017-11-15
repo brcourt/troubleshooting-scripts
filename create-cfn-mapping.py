@@ -1,22 +1,27 @@
 #!/usr/bin/env python
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
 # This script takes an AMI ID as an argument. This AMI needs to be in the     #
 # default configured region. On execution, this script will find matching     #
 # AMIs in other regions (same name and same owner) and create a Mapping       #
-# section for a CFN template. This is meeant to be used with Quickstart AMIs  # 
+# section for a CFN template. This is meeant to be used with Quickstart AMIs  #
 # and will allow you to quickly create a simple EC2 AMI mapping for every     #
 # region in a CloudFormation template.                                        #
 #                                                                             #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
 import boto3
 import json
 import sys
 
-print("Creating mappings for images similar to " + sys.argv[1])
+# Make sure AMI ID argument is provided
+try:
+    print("Creating mappings for images similar to " + sys.argv[1])
+except(IndexError):
+    print("Error: You must provide an AMI ID from the quickstart menu")
+    exit(1)
 
 # Here is the mapping as an empty dictionary. This is what we need to return
 mapping = {}
