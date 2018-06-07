@@ -1,19 +1,11 @@
-/*
-  The script forces the Elastic Beanstalk command-processor to execute the commands
-  that it normally receives from cfn-hup. Rather than manually performing an update
-  that would trigger one of these commands, this script manually calls command-processor
-  and runs the command that you specify in an argument. This was shamlessly written
-  in Go because I am learning the language. Obviously a shell script would be more
-  useful...
-*/
-
 package main
 
+// import "github.com/aws/aws-sdk-go"
 import (
   "fmt"
   "os"
   "os/exec"
-  "bytes"
+  // "bytes"
 )
 
 func main() {
@@ -38,14 +30,14 @@ func main() {
      print_commands(AVAILABLE_COMMANDS)
      os.Exit(1)
   }
-
+  
   // Check if argument is valid, and set command if it is
   var COMMAND string
   for _, v := range AVAILABLE_COMMANDS {
       if v == os.Args[1] {
       	fmt.Println("Argument is valid")
       	COMMAND = os.Args[1]
-      }
+      } 
   }
 
   // If command is not set (not valid) exit and print valid arguments
@@ -62,12 +54,11 @@ func main() {
   "command_name": "%s"
   }`, COMMAND)
 
-
+ 
   run_eb_cmd(EB_CMD)
 
 }
 
-// Prints available commands
 func print_commands(arr [12]string) {
    for _, v := range arr {
      fmt.Printf("\t%s\n", v)
@@ -86,3 +77,11 @@ func run_eb_cmd(str string) {
      fmt.Printf("%s", err)
      return
    }
+
+   fmt.Printf("\n%s\n", out)
+}
+
+
+
+
+
