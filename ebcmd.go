@@ -5,7 +5,6 @@ import (
   "fmt"
   "os"
   "os/exec"
-  // "bytes"
 )
 
 func main() {
@@ -59,6 +58,7 @@ func main() {
 
 }
 
+// Prints available commands
 func print_commands(arr [12]string) {
    for _, v := range arr {
      fmt.Printf("\t%s\n", v)
